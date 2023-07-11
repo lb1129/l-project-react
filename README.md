@@ -15,7 +15,7 @@
   <a href="https://github.com/facebook/react">
     <img src="https://img.shields.io/badge/react-18.2.0-brightgreen.svg" alt="react">
   </a>
-  <a href="https://github.com/lb1129/l-project/blob/master/LICENSE">
+  <a href="https://github.com/lb1129/l-project-react/blob/master/LICENSE">
     <img src="https://img.shields.io/github/license/mashape/apistatus.svg" alt="license">
   </a>
 </p>
@@ -48,9 +48,9 @@
 # 克隆项目
 git clone https://github.com/lb1129/l-project-react.git
 
-# main.ts app-env.d.ts 这两个文件保留，其余src目录及文件可清空
+# main.tsx app-env.d.ts 这两个文件保留，其余src目录及文件可清空
 
-# main.ts 第一行内容保留，其余内容可清空
+# main.tsx 第一行内容保留，其余内容可清空
 
 # 加入你的内容
 ```
