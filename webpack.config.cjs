@@ -10,12 +10,14 @@ const webpack = require('webpack')
 const dotenv = require('dotenv')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const ESLintPlugin = require('eslint-webpack-plugin')
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 
 const appDirectory = fs.realpathSync(process.cwd())
 const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath)
 
 const NODE_ENV = process.env.NODE_ENV
 const isProduction = NODE_ENV === 'production'
+const isDevelopment = NODE_ENV === 'development'
 const IS_ANALYZE = process.env.IS_ANALYZE === 'true'
 // 内置环境变量 外部自定义环境变量也扩展到该对象 剥离对process.env的污染
 const builtInEnvs = {
@@ -66,7 +68,7 @@ const resolveClientEnv = (raw) => {
 }
 
 module.exports = {
-  entry: [resolveApp('src/main.ts')],
+  entry: [resolveApp('src/main.tsx')],
   output: {
     path: resolveApp(BUILD_PATH),
     publicPath: PUBLIC_URL,
@@ -84,7 +86,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.ts$/,
+        test: /\.tsx$/,
         use: [
           {
             loader: 'babel-loader',
@@ -175,7 +177,7 @@ module.exports = {
         maxEntrypointSize: 500000
       },
   resolve: {
-    extensions: ['.mjs', '.js', '.ts', '.json'],
+    extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx', '.mts', '.json'],
     alias: {
       '@': resolveApp('src'),
       '~': resolveApp('node_modules')
@@ -185,6 +187,7 @@ module.exports = {
     type: 'filesystem'
   },
   plugins: [
+    isDevelopment && new ReactRefreshWebpackPlugin(),
     new ESLintPlugin({
       extensions: ['js', 'ts']
     }),
