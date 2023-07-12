@@ -187,7 +187,7 @@ module.exports = {
   plugins: [
     isDevelopment && new ReactRefreshWebpackPlugin(),
     new ESLintPlugin({
-      extensions: ['js', 'ts']
+      extensions: ['js', 'jsx', 'ts', 'tsx']
     }),
     new ForkTsCheckerWebpackPlugin(),
     new webpack.ProgressPlugin(),
